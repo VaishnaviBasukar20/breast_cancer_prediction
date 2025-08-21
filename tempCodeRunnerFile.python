@@ -1,0 +1,18 @@
+import os
+import google.generativeai as genai
+
+gemini_api_key = os.getenv("GEMINI_API_KEY")
+
+if not gemini_api_key:
+    print("Error: GEMINI_API_KEY not found. Please set the environment variable.")
+else:
+    genai.configure(api_key=gemini_api_key)
+    print("Listing all available models:")
+    try:
+        for model in genai.list_models():
+            if 'generateContent' in model.supported_generation_methods:
+                print(f"Model Name: {model.name}")
+                print(f"  Supported methods: {model.supported_generation_methods}")
+                print("-" * 20)
+    except Exception as e:
+        print(f"An error occurred while listing models: {e}")
