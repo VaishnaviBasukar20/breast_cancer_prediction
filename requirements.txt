@@ -7,3 +7,4 @@ scikit-learn
 shap
 lime
 google-generativeai
+python-dotenv
